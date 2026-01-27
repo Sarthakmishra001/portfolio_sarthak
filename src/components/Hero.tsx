@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Twitter } from 'lucide-react';
 import FloatingOrbs from './FloatingOrbs';
 import AnimatedText, { AnimatedLetters } from './AnimatedText';
+import AnimatedRole from './AnimatedRole';
 import MagneticButton from './MagneticButton';
 
 const Hero = () => {
@@ -44,8 +45,17 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
         >
-          Full-Stack Developer crafting immersive web experiences with modern technologies. 
-          Turning complex ideas into elegant, performant solutions.
+          Full-Stack Developer &{' '}
+          <AnimatedRole
+            roles={[
+              'Designer',
+              'Explorer',
+              'Gamer',
+              'Tech Enthusiast',
+              'Creative Coder',
+            ]}
+            duration={1}
+          />
         </motion.p>
 
         <motion.div
