@@ -6,11 +6,11 @@ const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const stats = [
-    { value: '5+', label: 'Years Experience' },
-    { value: '50+', label: 'Projects Delivered' },
-    { value: '30+', label: 'Happy Clients' },
-  ];
+  // const stats = [
+  //   { value: '5+', label: 'Years Experience' },
+  //   { value: '50+', label: 'Projects Delivered' },
+  //   { value: '30+', label: 'Happy Clients' },
+  // ];
 
   const highlights = [
     { icon: Code2, title: 'Clean Code', description: 'Writing maintainable, scalable code' },
@@ -43,9 +43,10 @@ const About = () => {
               >
                 <div className="w-full h-full rounded-3xl bg-background" />
               </motion.div>
-              
+
               {/* Content */}
-              <div className="absolute inset-2 rounded-3xl bg-card-gradient overflow-hidden flex items-center justify-center">
+              <div className="absolute inset-2 rounded-3xl bg-card-gradient overflow-hidden 
+              flex items-center justify-center">
                 <motion.div
                   className="text-8xl font-bold gradient-text"
                   animate={{ scale: [1, 1.05, 1] }}
@@ -53,18 +54,20 @@ const About = () => {
                 >
                   SM
                 </motion.div>
-                
+
                 {/* Floating elements */}
                 <motion.div
-                  className="absolute top-8 right-8 w-16 h-16 rounded-xl bg-primary/20 backdrop-blur-sm flex items-center justify-center"
+                  className="absolute top-8 right-8 w-16 h-16 rounded-xl bg-primary/20 
+                  backdrop-blur-sm flex items-center justify-center"
                   animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
                   transition={{ duration: 6, repeat: Infinity }}
                 >
                   <Code2 className="text-primary" size={28} />
                 </motion.div>
-                
+
                 <motion.div
-                  className="absolute bottom-8 left-8 w-14 h-14 rounded-xl bg-secondary/20 backdrop-blur-sm flex items-center justify-center"
+                  className="absolute bottom-8 left-8 w-14 h-14 rounded-xl bg-secondary/20
+                   backdrop-blur-sm flex items-center justify-center"
                   animate={{ y: [10, -10, 10], rotate: [0, -5, 0] }}
                   transition={{ duration: 5, repeat: Infinity }}
                 >
@@ -95,18 +98,19 @@ const About = () => {
             </h2>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Hi, I'm Sarthak Mishra — a passionate Full-Stack Developer based in India. 
-              I specialize in creating beautiful, performant web applications using modern 
+              Hi, I'm Sarthak Mishra — a passionate Full-Stack Developer based in India. <br />
+              I specialize in creating beautiful, performant web applications using modern
               technologies like React, Next.js, Node.js, and more.
             </p>
 
             <p className="text-muted-foreground mb-10 leading-relaxed">
-              With a keen eye for design and a love for clean code, I bridge the gap between 
-              aesthetics and functionality. Every project is an opportunity to create something 
+              With a keen eye for design and a love for clean code, I bridge the gap between
+              aesthetics and functionality. Every project is an opportunity to create something
               meaningful that users will love.
             </p>
 
             {/* Stats */}
+            {/* 
             <div className="grid grid-cols-3 gap-6 mb-10">
               {stats.map((stat, index) => (
                 <motion.div
@@ -122,7 +126,8 @@ const About = () => {
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </motion.div>
               ))}
-            </div>
+            </div> 
+            */}
 
             {/* Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

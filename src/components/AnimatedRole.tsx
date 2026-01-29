@@ -150,15 +150,24 @@ const AnimatedRole = ({
 
   return (
     <span
-      className={`relative inline-block ${className}`}
-      style={{ minWidth: '140px', display: 'inline-block' }}
+      className={`relative inline-grid items-center ${className}`}
+      style={{ verticalAlign: 'bottom' }}
     >
+      {/* Invisible spacer to set width based on longest word */}
+      <span className="invisible font-bold whitespace-nowrap leading-none opacity-0 select-none" aria-hidden="true" style={{ gridArea: '1/1' }}>
+        Creative Coder
+      </span>
+
       <span
         ref={wordRef}
-        className="inline-block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent font-bold whitespace-nowrap"
+        className="inline-block bg-clip-text text-transparent font-bold whitespace-nowrap leading-none text-center"
         style={{
-          willChange: 'transform, opacity',
-          filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.3))',
+          gridArea: '1/1',
+          willChange: 'transform, opacity, filter',
+          background: 'linear-gradient(90deg, hsl(190, 100%, 60%), hsl(270, 100%, 70%), hsl(220, 100%, 65%))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          filter: 'drop-shadow(0 0 15px hsl(190, 100%, 50%, 0.4))',
         }}
       >
         Designer

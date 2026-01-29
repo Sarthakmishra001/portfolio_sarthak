@@ -304,3 +304,65 @@
   background: transparent;
   mix-blend-mode: screen;
 }
+
+#movingelement1 {
+  position: absolute;
+  inset: 0;
+  background: #7195FF;
+  filter: blur(90px);
+  /* opacity: 0.35; */
+  top: 50vh;
+
+}
+
+#movingelement2 {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  background: #7195FF;
+  /* filter: blur(90px); */
+  /* opacity: 0.5; */
+  top: 0;
+  animation: move1 8s ease-in-out infinite;
+}
+
+#movingelement3 {
+  position: absolute;
+  width: 35%;
+  height: 35%;
+  background: #7195FF;
+  /* filter: blur(100px); */
+  /* opacity: 0.4; */
+  animation: move2 10s ease-in-out infinite;
+}
+
+
+@keyframes move1 {
+  0%{
+        bottom: 0;
+        right: 0;
+    }
+    50%{
+       bottom : 5vw;
+        /* right: 10vw; */
+    }
+    100%{
+        bottom: 00vw;
+        right: 10vw;
+    }
+}
+
+@keyframes move2 {
+ 0%{
+        bottom: 0vw;
+        right: 10vw;
+    }
+    50%{
+        bottom: 7vw;
+        right: 33vw;  
+    }
+    100%{
+        bottom: 0vw;
+        right: 10vw;
+    }
+}
