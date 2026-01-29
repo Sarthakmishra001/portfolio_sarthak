@@ -33,14 +33,15 @@ const skillCategories: SkillCategory[] = [
     subtitle: 'Modern UI & application interfaces',
     icon: Code2,
     technologies: [
-      { name: 'HTML5', icon: '🟧' },
-      { name: 'CSS3', icon: '🔷' },
-      { name: 'Tailwind CSS', icon: '💨' },
-      { name: 'JavaScript', icon: '💛' },
-      { name: 'TypeScript', icon: '📘' },
-      { name: 'React.js', icon: '⚛️' },
-      { name: 'Next.js', icon: '▲' },
-      { name: 'Framer Motion', icon: '🎬' },
+      { name: 'HTML5', icon: '/imgs/html.png' },
+      { name: 'CSS3', icon: '/imgs/css.png' },
+      { name: 'Tailwind CSS', icon: '/imgs/tailwind-css.png' },
+      { name: 'JavaScript', icon: '/imgs/js.png' },
+      { name: 'React.js', icon: '/imgs/react.png' },
+      { name: 'Redux Toolkit', icon: '/imgs/redux.png' },
+      { name: 'shadcn/ui', icon: '/imgs/shadcn.png' },
+      { name: 'TypeScript', icon: '/imgs/ts.png' },
+      { name: 'Next.js', icon: '/imgs/next.png' },
     ],
     gradientFrom: 'from-blue-500',
     gradientVia: 'via-violet-500',
@@ -51,12 +52,15 @@ const skillCategories: SkillCategory[] = [
     subtitle: 'Logic, APIs & real-time backends',
     icon: Database,
     technologies: [
-      { name: 'Node.js', icon: '🟢' },
-      { name: 'Express', icon: '🚂' },
-      { name: 'MongoDB', icon: '🍃' },
-      { name: 'Mongoose', icon: '🦡' },
-      { name: 'JWT', icon: '🔐' },
-      { name: 'WebSockets', icon: '🔌' },
+      { name: 'Node.js', icon: '/imgs/node.png' },
+      { name: 'Express', icon: '/imgs/express.png' },
+      { name: 'Mongoose', icon: '/imgs/mongoose.png' },
+      { name: 'MongoDB', icon: '/imgs/mongodb.png' },
+      { name: 'JWT', icon: '/imgs/jwt.png' },
+      { name: 'WebSockets', icon: '/imgs/websockts.png' },
+      { name: 'REST APIs', icon: '/imgs/rest.png' },
+      { name: 'Redis', icon: '/imgs/redis.png' },
+      { name: 'Postman', icon: '/imgs/postman.png' },
     ],
     gradientFrom: 'from-green-500',
     gradientVia: 'via-teal-500',
@@ -67,11 +71,13 @@ const skillCategories: SkillCategory[] = [
     subtitle: 'Animation-driven web experiences',
     icon: Sparkles,
     technologies: [
-      { name: 'GSAP', icon: '⚡' },
-      { name: 'Three.js', icon: '🎲' },
-      { name: 'WebGL', icon: '🌐' },
+      { name: 'GSAP', icon: '/imgs/gsap.png' },
+      { name: 'Three.js', icon: '/imgs/three.js.png' },
+      { name: 'WebGL', icon: '/imgs/webgl.png' },
+      { name: 'React Three Fiber', icon: '/imgs/r3f.png' },
+      { name: 'Framer Motion', icon: '/imgs/framer-motion.png' },
+      { name: 'ScrollTrigger', icon: '/imgs/scrolltrigger.png' },
     ],
-    features: ['Canvas', 'Scroll Animations', 'Interactive UI'],
     gradientFrom: 'from-purple-500',
     gradientVia: 'via-pink-500',
     gradientTo: 'to-fuchsia-500',
@@ -81,12 +87,12 @@ const skillCategories: SkillCategory[] = [
     subtitle: 'Design, collaboration & deployment',
     icon: Wrench,
     technologies: [
-      { name: 'Git', icon: '📦' },
-      { name: 'GitHub', icon: '🐙' },
-      { name: 'Figma', icon: '🎨' },
-      { name: 'Vercel', icon: '▲' },
-      { name: 'Netlify', icon: '💚' },
-      { name: 'Render', icon: '🚀' },
+      { name: 'Git', icon: '/imgs/git.png' },
+      { name: 'GitHub', icon: '/imgs/github.png' },
+      { name: 'Figma', icon: '/imgs/figma.png' },
+      { name: 'Vercel', icon: '/imgs/vercel.png' },
+      { name: 'Netlify', icon: '/imgs/netlify.png' },
+      { name: 'Render', icon: '/imgs/render.png' },
     ],
     gradientFrom: 'from-cyan-500',
     gradientVia: 'via-teal-500',
@@ -105,7 +111,7 @@ const SkillCard = ({ category, index }: { category: SkillCategory; index: number
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative"
+      className="group relative h-full"
     >
       {/* Gradient border wrapper */}
       <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${category.gradientFrom} ${category.gradientVia} ${category.gradientTo} opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-sm`} />
@@ -114,7 +120,7 @@ const SkillCard = ({ category, index }: { category: SkillCategory; index: number
       <div className={`absolute -inset-1 rounded-3xl bg-gradient-to-br ${category.gradientFrom} ${category.gradientVia} ${category.gradientTo} opacity-20 group-hover:opacity-40 transition-opacity duration-500 blur-xl`} />
 
       {/* Main card */}
-      <div className="relative bg-black/40 backdrop-blur-xl rounded-3xl p-8 border border-white/10 group-hover:border-white/20 transition-all duration-500">
+      <div className="relative h-full bg-black/40 backdrop-blur-xl rounded-3xl p-8 border border-white/10 group-hover:border-white/20 transition-all duration-500 flex flex-col">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
@@ -135,7 +141,17 @@ const SkillCard = ({ category, index }: { category: SkillCategory; index: number
               >
                 <div className={`absolute inset-0 rounded-lg bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo} opacity-0 group-hover/tech:opacity-20 transition-opacity duration-300 blur-sm`} />
                 <div className="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm group-hover/tech:bg-white/10 group-hover/tech:border-white/20 transition-all duration-300">
-                  {tech.icon && <span className="text-base">{tech.icon}</span>}
+                  {tech.icon && (
+                    <img
+                      src={tech.icon}
+                      alt={tech.name}
+                      className="w-5 h-5 object-contain"
+                      onError={(e) => {
+                        // Fallback to a default icon if image fails to load
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  )}
                   <span className="text-sm font-medium text-gray-200">{tech.name}</span>
                 </div>
               </motion.div>
