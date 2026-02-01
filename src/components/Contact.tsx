@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter, ArrowUpRight } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import MagneticButton from './MagneticButton';
 
 const Contact = () => {
@@ -13,10 +14,36 @@ const Contact = () => {
   });
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formState);
+
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        'service_suferhb',
+        'template_h6ck6u3',
+        {
+          from_name: formState.name,
+          reply_to: formState.email,
+          message: formState.message,
+        },
+        'Kmgh1Ss1E3aTMAOPw'
+      );
+
+      // Show success message
+      alert('Message sent successfully');
+
+      // Reset form fields
+      setFormState({
+        name: '',
+        email: '',
+        message: '',
+      });
+    } catch (error) {
+      // Show error message
+      alert('Failed to send message');
+      console.error('EmailJS error:', error);
+    }
   };
 
   const contactInfo = [
@@ -83,12 +110,6 @@ const Contact = () => {
                   placeholder="Enter Your Name"
                   whileFocus={{ scale: 1.01 }}
                 />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                  initial={{ width: 0 }}
-                  animate={{ width: focusedField === 'name' ? '100%' : 0 }}
-                  transition={{ duration: 0.3 }}
-                />
               </div>
 
               {/* Email field */}
@@ -109,12 +130,6 @@ const Contact = () => {
                   placeholder="Enter Your Email"
                   whileFocus={{ scale: 1.01 }}
                 />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                  initial={{ width: 0 }}
-                  animate={{ width: focusedField === 'email' ? '100%' : 0 }}
-                  transition={{ duration: 0.3 }}
-                />
               </div>
 
               {/* Message field */}
@@ -134,12 +149,6 @@ const Contact = () => {
                   className="w-full px-4 py-4 rounded-xl bg-muted/50 border border-border focus:border-primary focus:outline-none transition-colors resize-none placeholder:text-muted-foreground/50"
                   placeholder="Tell me about your project..."
                   whileFocus={{ scale: 1.01 }}
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                  initial={{ width: 0 }}
-                  animate={{ width: focusedField === 'message' ? '100%' : 0 }}
-                  transition={{ duration: 0.3 }}
                 />
               </div>
 
@@ -179,7 +188,13 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">{label}</p>
-                    <p className="font-medium">{value}</p>
+                    {label === 'Email' ? (
+                      <a href={`mailto:${value}`} className="font-medium hover:text-primary transition-colors">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="font-medium">{value}</p>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -216,7 +231,7 @@ const Contact = () => {
                 I'm currently available for freelance work and exciting opportunities.
               </p>
               <a
-                href="mailto:sarthakm0108@gmail.com"
+                href={`mailto:sarthakm0108@gmail.com?subject=${encodeURIComponent('Schedule a Call with Sarthak')}&body=${encodeURIComponent('Hi Sarthak,\n\nI would like to schedule a call with you.\nPlease let me know your available time slots.\n\nThanks.')}`}
                 className="inline-flex items-center gap-2 text-primary hover:underline"
               >
                 Schedule a call

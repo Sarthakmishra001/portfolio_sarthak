@@ -53,12 +53,13 @@ const CustomCursor = () => {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-[9999] hidden md:block border-2 border-white shadow-lg"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: '-50%',
           translateY: '-50%',
+          backgroundColor: 'hsl(190, 100%, 50%)',
         }}
         animate={{
           scale: isClicking ? 0.8 : 1,
@@ -68,12 +69,13 @@ const CustomCursor = () => {
 
       {/* Cursor ring */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-border pointer-events-none z-[9998] hidden md:block"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998] hidden md:block"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: '-50%',
           translateY: '-50%',
+          border: '2px solid #00D4FF',
         }}
         animate={{
           scale: isHovering ? 1.8 : 1,
