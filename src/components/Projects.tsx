@@ -94,13 +94,13 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
             animate={{ scale: isHovered ? 1.1 : 1 }}
             transition={{ duration: 0.6 }}
           />
-          
+
           {/* Overlay */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"
             animate={{ opacity: isHovered ? 0.9 : 0.6 }}
           />
-          
+
           {/* Hover content */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center gap-4"
@@ -134,7 +134,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
             {project.title}
           </h3>
           <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-          
+
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <span
@@ -172,7 +172,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-background/90 backdrop-blur-sm" />
-      
+
       {/* Modal */}
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
@@ -203,7 +203,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
         <div className="p-8">
           <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
           <p className="text-muted-foreground mb-6">{project.longDescription}</p>
-          
+
           <div className="flex flex-wrap gap-2 mb-8">
             {project.tags.map((tag) => (
               <span
@@ -244,12 +244,25 @@ const Projects = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
+    console.log('Scroll button clicked:', direction);
+
     if (scrollRef.current) {
-      const scrollAmount = 400;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
+      const container = scrollRef.current;
+      const scrollAmount = 432;
+
+      console.log('Current scrollLeft:', container.scrollLeft);
+      console.log('scrollWidth:', container.scrollWidth);
+      console.log('clientWidth:', container.clientWidth);
+
+      if (direction === 'left') {
+        container.scrollLeft -= scrollAmount;
+      } else {
+        container.scrollLeft += scrollAmount;
+      }
+
+      console.log('New scrollLeft:', container.scrollLeft);
+    } else {
+      console.error('scrollRef.current is NULL');
     }
   };
 
@@ -308,11 +321,15 @@ const Projects = () => {
 
         <div
           ref={scrollRef}
-          className="hidden lg:flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="hidden lg:flex gap-8 pb-4"
+          style={{
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
         >
           {projects.map((project, index) => (
-            <div key={project.id} className="flex-shrink-0 w-[400px] snap-start">
+            <div key={project.id} className="flex-shrink-0 w-[400px]">
               <ProjectCard
                 project={project}
                 index={index}

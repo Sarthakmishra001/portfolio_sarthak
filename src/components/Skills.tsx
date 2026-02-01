@@ -60,7 +60,7 @@ const skillCategories: SkillCategory[] = [
       { name: 'WebSockets', icon: '/imgs/websockts.png' },
       { name: 'REST APIs', icon: '/imgs/rest.png' },
       { name: 'Redis', icon: '/imgs/redis.png' },
- 
+
     ],
     gradientFrom: 'from-green-500',
     gradientVia: 'via-teal-500',
@@ -93,7 +93,7 @@ const skillCategories: SkillCategory[] = [
       { name: 'Vercel', icon: '/imgs/vercel.png' },
       { name: 'Netlify', icon: '/imgs/netlify.png' },
       { name: 'Render', icon: '/imgs/render.png' },
-           { name: 'Postman', icon: '/imgs/postman.png' },
+      { name: 'Postman', icon: '/imgs/postman.png' },
     ],
     gradientFrom: 'from-cyan-500',
     gradientVia: 'via-teal-500',
