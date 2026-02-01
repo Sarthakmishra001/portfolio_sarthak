@@ -20,15 +20,15 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'sarthak@example.com' },
-    { icon: Phone, label: 'Phone', value: '+91 98765 43210' },
-    { icon: MapPin, label: 'Location', value: 'Bangalore, India' },
+    { icon: Mail, label: 'Email', value: 'sarthakm0108@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '+91 9691382572' },
+    { icon: MapPin, label: 'Location', value: 'Bhopal, India' },
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/Sarthakmishra001', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/sarthak-mishra-30902425a', label: 'LinkedIn' },
+    { icon: Twitter, href: 'https://x.com/smx_coder', label: 'Twitter' },
   ];
 
   return (
@@ -80,7 +80,7 @@ const Contact = () => {
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => setFocusedField(null)}
                   className="w-full px-4 py-4 rounded-xl bg-muted/50 border border-border focus:border-primary focus:outline-none transition-colors placeholder:text-muted-foreground/50"
-                  placeholder="John Doe"
+                  placeholder="Enter Your Name"
                   whileFocus={{ scale: 1.01 }}
                 />
                 <motion.div
@@ -106,7 +106,7 @@ const Contact = () => {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   className="w-full px-4 py-4 rounded-xl bg-muted/50 border border-border focus:border-primary focus:outline-none transition-colors placeholder:text-muted-foreground/50"
-                  placeholder="john@example.com"
+                  placeholder="Enter Your Email"
                   whileFocus={{ scale: 1.01 }}
                 />
                 <motion.div
@@ -216,7 +216,7 @@ const Contact = () => {
                 I'm currently available for freelance work and exciting opportunities.
               </p>
               <a
-                href="mailto:sarthak@example.com"
+                href="mailto:sarthakm0108@gmail.com"
                 className="inline-flex items-center gap-2 text-primary hover:underline"
               >
                 Schedule a call

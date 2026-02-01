@@ -65,10 +65,10 @@ const CustomCursor = () => {
         }}
         transition={{ duration: 0.1 }}
       />
-      
+
       {/* Cursor ring */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-primary/50 pointer-events-none z-[9998] hidden md:block"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-border pointer-events-none z-[9998] hidden md:block"
         style={{
           x: cursorX,
           y: cursorY,
@@ -77,11 +77,10 @@ const CustomCursor = () => {
         }}
         animate={{
           scale: isHovering ? 1.8 : 1,
-          borderColor: isHovering ? 'hsl(190, 100%, 50%)' : 'hsl(190, 100%, 50%, 0.5)',
         }}
         transition={{ duration: 0.2 }}
       />
-      
+
       {/* Glow effect on hover */}
       {isHovering && (
         <motion.div
