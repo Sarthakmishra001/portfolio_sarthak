@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Download } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -12,41 +12,45 @@ interface Project {
   liveUrl: string;
   githubUrl: string;
   color: string;
+  downloadUrl?: string;
+  imageContain?: boolean;
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'Full-stack e-commerce with real-time inventory',
-    longDescription: 'A comprehensive e-commerce solution built with Next.js and Node.js, featuring real-time inventory management, Stripe payments, and an admin dashboard.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
-    tags: ['Next.js', 'Node.js', 'MongoDB', 'Stripe'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: 'RGPV StudyPoint',
+    description: 'Complete study resource platform for RGPV students',
+    longDescription: 'A comprehensive study resource platform designed for RGPV university students, providing notes, previous year papers, syllabus, and study materials all in one place.',
+    image: '/imgs/rgpv_studypointgif.gif',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui'],
+    liveUrl: 'https://rgpv-study-point.vercel.app',
+    githubUrl: 'https://github.com/Sarthakmishra001/RGPV-StudyPoint',
     color: 'hsl(190, 100%, 50%)',
   },
   {
     id: 2,
-    title: 'AI Dashboard',
-    description: 'Analytics dashboard with AI-powered insights',
-    longDescription: 'An intelligent analytics platform that uses machine learning to provide actionable insights and predictions for business metrics.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    tags: ['React', 'Python', 'TensorFlow', 'D3.js'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: 'EchoChat',
+    description: 'Real-time chat platform with text and video calling',
+    longDescription: 'A comprehensive real-time communication platform allowing users to seamlessly exchange text messages and make one-to-one video calls directly from the browser.',
+    image: '/imgs/echochat.gif',
+    tags: ['Node.js', 'Express.js', 'Tailwind CSS', 'EJS', 'MongoDB', 'WebRTC', 'WebSockets'],
+    liveUrl: 'https://echochat-app-upsw.onrender.com',
+    githubUrl: 'https://github.com/Sarthakmishra001/EchoChat_App',
     color: 'hsl(270, 100%, 60%)',
   },
   {
     id: 3,
-    title: 'Social Media App',
-    description: 'Real-time social platform with stories',
-    longDescription: 'A modern social media application with real-time messaging, stories, and a sophisticated recommendation algorithm.',
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop',
-    tags: ['React Native', 'Firebase', 'Redux', 'Node.js'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: 'Daily Habit Tracker',
+    description: 'Progressive web app to track habits and maintain streaks',
+    longDescription: 'An intuitive and responsive progressive web application designed to help users track their daily habits, maintain streaks, and analyze their progress over time.',
+    image: '/imgs/daily habit tracker.jpg',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Local Storage', 'PWA'],
+    liveUrl: 'https://daily-habit-keepersarthak.vercel.app',
+    githubUrl: 'https://github.com/Sarthakmishra001/daily-habit-keeper',
     color: 'hsl(220, 100%, 60%)',
+    downloadUrl: '/Daily Habit Tracker.apk',
+    imageContain: true,
   },
   {
     id: 4,
@@ -86,14 +90,23 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
         }}
       >
         {/* Image */}
-        <div className="relative aspect-video overflow-hidden">
-          <motion.img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-            animate={{ scale: isHovered ? 1.1 : 1 }}
-            transition={{ duration: 0.6 }}
-          />
+        <div className="relative aspect-video overflow-hidden" style={{ backgroundColor: (project.image.endsWith('.gif') || project.imageContain) ? '#0a0a0a' : undefined }}>
+          {project.image.endsWith('.gif') ? (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full"
+              style={{ objectFit: 'contain', objectPosition: 'center' }}
+            />
+          ) : (
+            <motion.img
+              src={project.image}
+              alt={project.title}
+              className={`w-full h-full ${project.imageContain ? 'object-contain pt-4 pb-4' : 'object-cover'}`}
+              animate={{ scale: isHovered ? (project.imageContain ? 1.05 : 1.1) : 1 }}
+              transition={{ duration: 0.6 }}
+            />
+          )}
 
           {/* Overlay */}
           <motion.div
@@ -109,6 +122,8 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
           >
             <motion.a
               href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:shadow-glow-sm transition-shadow"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -118,6 +133,8 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
             </motion.a>
             <motion.a
               href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -162,12 +179,23 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
 };
 
 const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
+  // Disable body scroll when modal is open
+  useEffect(() => {
+    // Save original overflow
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
       onClick={onClose}
     >
       {/* Backdrop */}
@@ -179,30 +207,31 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: 'spring', damping: 20 }}
-        className="relative w-full max-w-4xl rounded-3xl bg-card border border-border overflow-hidden"
+        className="relative w-full max-w-xl max-h-[85vh] rounded-3xl bg-card border border-border overflow-y-auto no-scrollbar"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-muted/80 flex items-center justify-center hover:bg-muted transition-colors"
+          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/60 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-background transition-colors shadow-lg"
         >
           <X size={20} />
         </button>
 
         {/* Image */}
-        <div className="aspect-video">
+        <div className="aspect-video shrink-0 p-4" style={{ backgroundColor: (project.image.endsWith('.gif') || project.imageContain) ? '#0a0a0a' : undefined }}>
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full"
+            style={{ objectFit: (project.image.endsWith('.gif') || project.imageContain) ? 'contain' : 'cover', objectPosition: 'center' }}
           />
         </div>
 
         {/* Content */}
-        <div className="p-8">
-          <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
-          <p className="text-muted-foreground mb-6">{project.longDescription}</p>
+        <div className="p-6 sm:p-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3">{project.title}</h2>
+          <p className="text-muted-foreground text-sm sm:text-base mb-6">{project.longDescription}</p>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {project.tags.map((tag) => (
@@ -215,21 +244,35 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
             ))}
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4 mt-6">
             <a
               href={project.liveUrl}
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:shadow-glow-sm transition-shadow"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:shadow-glow-sm transition-shadow text-sm"
             >
               <ExternalLink size={18} />
               View Live
             </a>
             <a
               href={project.githubUrl}
-              className="flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary transition-colors text-sm"
             >
               <Github size={18} />
               Source Code
             </a>
+            {project.downloadUrl && (
+              <a
+                href={project.downloadUrl}
+                download
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-neutral-800 text-white border border-neutral-700 font-medium hover:bg-neutral-700 transition-colors text-sm"
+              >
+                <Download size={18} />
+                Download App
+              </a>
+            )}
           </div>
         </div>
       </motion.div>
