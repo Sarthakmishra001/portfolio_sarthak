@@ -335,20 +335,6 @@ const Projects = () => {
         </motion.div>
 
         {/* Navigation arrows for horizontal scroll */}
-        <div className="hidden lg:flex justify-end gap-2 mb-6">
-          <button
-            onClick={() => scroll('left')}
-            className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
 
         {/* Projects - Horizontal scroll on large screens, grid on mobile */}
         <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-8">
